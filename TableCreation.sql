@@ -1,4 +1,6 @@
-1. create table OWNER(c_id number(5) constraint pkc_id primary key,c_Name varchar2(20),c_Address varchar2(20));
+1)
+create table OWNER(c_id number(5) constraint pkc_id primary key,c_Name varchar2(20),c_Address varchar2(20));
+
 insert into OWNER values(101,'Alvi Ahmed','P.T.I,Bogura');
 insert into OWNER values(102,'Tishad Ahmed','Lotapur,Dhaka');
 insert into OWNER values(103,'Arif Ahmed','Kashbon,Natore');
@@ -7,16 +9,21 @@ insert into OWNER values(105,'Rifa Das','Kalopur,Panchagar');
 
 select * from OWNER;
 
-2. create table Laptop_Computer_parts(product_no number(4) constraint pkp_no primary key,model varchar2(6),ava_Quantity number(3),purchase_price number(9));
+2)
+create table Laptop_Computer_parts(product_no number(4) constraint pkp_no primary key,model varchar2(6),ava_Quantity number(3),purchase_price number(9));
+
 insert into Laptop_Computer_parts values(201,'SS11',22,70000);
 insert into Laptop_Computer_parts values(202,'SS12',20,80000);
 insert into Laptop_Computer_parts values(203,'SS13',23,70000);
 insert into Laptop_Computer_parts values(204,'SS14',17,75000);
 insert into Laptop_Computer_parts values(205,'SS15',12,60000);
 insert into Laptop_Computer_parts values(206,'SS16',13,65000);
+
 select* from Laptop_Computer_parts;
 
-3. create table Price (purchase_price number(9) constraint pk_pp primary key,selling_price number(9));
+3)
+create table Price (purchase_price number(9) constraint pk_pp primary key,selling_price number(9));
+
 insert into Price values(60000,65000);
 insert into Price values(65000,70000);
 insert into Price values(70000,75000);
@@ -25,8 +32,11 @@ insert into Price values(80000,85000);
 
 select * from price;
 
-4.create table OWNER_Extra(c_Phone number(11),c_id number(5),constraint pkphn_cid primary key(c_Phone,c_id));
+4)
+create table OWNER_Extra(c_Phone number(11),c_id number(5),constraint pkphn_cid primary key(c_Phone,c_id));
+
 alter table OWNER_Extra add constraint fkc_id foreign key (c_id) references OWNER(c_id);
+
 insert into OWNER_Extra values(999998888,101);
 insert into OWNER_Extra values(999997777,101);
 insert into OWNER_Extra values(999996666,102);
@@ -37,8 +47,9 @@ insert into OWNER_Extra values(999992222,105);
 
 select * from OWNER_Extra;
 
-5.
+5)
 create table Import(product_no number(4) ,c_id number(5),constraint pkpno_cid primary key(product_no,c_id));
+
 alter table Import add constraint fkp_no2 foreign key (product_no) references Laptop_Computer_parts (product_no);
 alter table Import add constraint fkc_id2 foreign key (c_id) references OWNER(c_id);
 
@@ -52,11 +63,11 @@ insert into Import values(203,102);
 
 select * from Import;
 
-6.
+6)
+
 create table Branch(Branch_no number(4) constraint pkb_no primary key,location varchar2(20),telephone number(6));
 
 alter table Branch modify telephone unique;
-
 
 insert into Branch values(1001,'Matidali,Bogura',41110);
 insert into Branch values(1002,'Gabtoli,Dhaka',41111);
@@ -66,9 +77,8 @@ insert into Branch values(1005,'Dhonut,Natore',41114);
 
 select * from Branch;
 
-7.
+7)
 create table Operate_Branch(Branch_no number(4),c_id number(5),constraint pkbno_cid primary key(Branch_no,c_id ));
-
 
 alter table Operate_Branch add constraint fkb_no foreign key (Branch_no) references Branch(Branch_no);
 alter table Operate_Branch add constraint fkc_id3 foreign key (c_id) references OWNER(c_id);
@@ -81,7 +91,7 @@ insert into Operate_Branch values(1005,105);
 
 select * from Operate_Branch ;
 
-8.
+8)
 create table Employee(e_id number(5) constraint pke_id primary key,e_name varchar2(20),e_salary number(9));
 
 insert into Employee values(201,'Istishad Tishad',20000);
@@ -97,10 +107,10 @@ insert into Employee values(210,'Sakid Sarkar',20000);
 
 select * from Employee;
 
-9.
+9)
 create table Employee_Extra(e_Phone number(11),e_id number(5),constraint pkephn_eid primary key(e_Phone,e_id));
-alter table Employee_Extra add constraint fke_id foreign key (e_id) references Employee(e_id);
 
+alter table Employee_Extra add constraint fke_id foreign key (e_id) references Employee(e_id);
 
 insert into Employee_Extra values(999999991,201);
 insert into Employee_Extra values(999999992,201);
@@ -121,7 +131,7 @@ insert into Employee_Extra values(999999915,210);
 select * from  Employee_Extra;
 
 
-10.
+10)
 create table Work(e_id number(5),Branch_no number(4),constraint pkeid_bno primary key(e_id,Branch_no));
 
 alter table Work add constraint fke_id2 foreign key (e_id) references Employee(e_id);
@@ -140,7 +150,7 @@ insert into Work values(210,1005);
 
 select * from Work;
 
-11.
+11)
 create table Customer(invoice_id number(4) constraint pki_id primary key,cs_name varchar2(20),cs_address varchar2(20));
 
 insert into Customer values(2001,'Sheikh Rehana','Dhanmondi,Dhaka');
@@ -156,7 +166,7 @@ insert into Customer values(2010,'Mirza Abbas','Basundhora,Natore');
 
 select * from customer;
 
-12.
+12)
 create table Buy(invoice_id number(4),product_no number(4), constraint pkiid_pno primary key(invoice_id,product_no));
 
 alter table Buy add constraint fki_id foreign key (invoice_id ) references Customer(invoice_id );
