@@ -1,5 +1,4 @@
-# ComputerBusiness_Management
-
+## ComputerBusiness_Management
 
 A group of persons who are the owners of their computer business want to store the information related to the business in database.
 The id as primary key, name, phone as multivalued attribute and address of the owners will be stored in the database.
